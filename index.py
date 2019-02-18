@@ -67,13 +67,13 @@ if __name__ == "__main__":
         norm_feat = model.extract_feat(img_path)
         img_name = os.path.split(img_path)[1]
         feats.append(norm_feat)
-        names.append(img_name.encode('ascii', 'ignore'))
+        names.append(img_path.encode('ascii', 'ignore'))
 	p_time = time.time()-now
 	remain = ((time.time()-now) * len(img_list)-(i+1))/60
         
 	print ( "%d minutes remaining %2f per feature" %(remain, p_time) )
         print("extracting feature from image No. %d , %d images in total" %((i+1), len(img_list)))
-	if (i+1)%200==0:
+	if (i+1)%500==0:
 	    write_index(feats, names, args["index"])
 
     write_index(feats, names, args["index"])
