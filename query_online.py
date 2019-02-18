@@ -15,8 +15,6 @@ ap.add_argument("-query", required = True,
 	help = "Path to query which contains image to be queried")
 ap.add_argument("-index", required = True,
 	help = "Path to index")
-ap.add_argument("-result", required = True,
-	help = "Path for output retrieved images")
 args = vars(ap.parse_args())
 
 
