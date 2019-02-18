@@ -22,6 +22,7 @@ args = vars(ap.parse_args())
 
 # read in indexed images' feature vectors and corresponding image names
 h5f = h5py.File(args["index"],'r')
+print (h5f['dataset_2'])
 # feats = h5f['dataset_1'][:]
 feats = h5f['dataset_1'][:]
 print(feats)
@@ -53,13 +54,13 @@ rank_score = scores[rank_ID]
 
 
 # number of top retrieved images to show
-maxres = 3
+maxres = 10
 imlist = [imgNames[index] for i,index in enumerate(rank_ID[0:maxres])]
 print("top %d images in order are: " %maxres, imlist)
 
 # show top #maxres retrieved result one by one
 for i,im in enumerate(imlist):
-    image = mpimg.imread(args["result"]+"/"+str(im, 'utf-8'))
+    image = mpimg.imread(args["result"]+"/"+str(im))
     plt.title("search output %d" %(i+1))
     plt.imshow(image)
     plt.show()
