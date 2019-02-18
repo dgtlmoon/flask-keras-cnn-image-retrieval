@@ -4,7 +4,7 @@ from extract_cnn_vgg16_keras import VGGNet
 
 import numpy as np
 import h5py
-
+import time
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import argparse
@@ -38,9 +38,11 @@ model = VGGNet()
 
 # extract query image's feature, compute simlarity score and sort
 queryVec = model.extract_feat(queryDir)
+now=time.time()
 scores = np.dot(queryVec, feats.T)
 rank_ID = np.argsort(scores)[::-1]
 rank_score = scores[rank_ID]
+print (time.time() - now)
 #print rank_ID
 #print rank_score
 
@@ -62,7 +64,7 @@ plt.title("query" )
 # show top #maxres retrieved result one by one
 for i,im in enumerate(imlist):
     s= ('{:g}'.format(rank_score[i]))
-    if rank_score[i] >=0.70:
+    if rank_score[i] >=0.50:
 	image = mpimg.imread(str(im))
 	fig.add_subplot(2, 5, i+2)
 	plt.title(s )
